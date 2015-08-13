@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{productsBean.page}'/>
+		<f:event type="preRenderView" listener='#{productsBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Products entities"/>
+
+	<ui:define name="header">
+		Products
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Products entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="productsBeanExampleProductName" value="Product Name:"/>
+						<h:panelGroup>
+							<h:inputText id="productsBeanExampleProductName" maxLength="25" value="#{productsBean.example.productName}"/>
+							<h:message for="productsBeanExampleProductName" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="productsBeanExampleProductDescription" value="Product Description:"/>
+						<h:panelGroup>
+							<h:inputText id="productsBeanExampleProductDescription" maxLength="50" value="#{productsBean.example.productDescription}"/>
+							<h:message for="productsBeanExampleProductDescription" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="productsBeanExampleUnit" value="Unit:"/>
+						<h:panelGroup>
+							<h:inputText id="productsBeanExampleUnit" maxLength="20" value="#{productsBean.example.unit}"/>
+							<h:message for="productsBeanExampleUnit" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="productsBeanExampleCurrency" value="Currency:"/>
+						<h:panelGroup>
+							<h:inputText id="productsBeanExampleCurrency" maxLength="3" value="#{productsBean.example.currency}"/>
+							<h:message for="productsBeanExampleCurrency" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Search" action='#{productsBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Create New" action='#{productsBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="productsBeanPageItems" styleClass="data-table" value="#{productsBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Product Name"/>
+					</f:facet>
+					<h:link outcome="/products/view">
+						<f:param name="id" value="#{_item.productId}"/>
+						<h:outputText id="itemProductName" value="#{_item.productName}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Unit"/>
+					</f:facet>
+					<h:link outcome="/products/view">
+						<f:param name="id" value="#{_item.productId}"/>
+						<h:outputText id="itemUnit" value="#{_item.unit}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Price"/>
+					</f:facet>
+					<h:link outcome="/products/view">
+						<f:param name="id" value="#{_item.productId}"/>
+						<h:outputText id="itemPrice" value="#{_item.price}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Currency"/>
+					</f:facet>
+					<h:link outcome="/products/view">
+						<f:param name="id" value="#{_item.productId}"/>
+						<h:outputText id="itemCurrency" value="#{_item.currency}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{productsBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

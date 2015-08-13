@@ -1,0 +1,5 @@
+/home/vahicyr/workspace/MicroservicesDemo/products/src/main/java/demo/dboerse/microservices/products/rest/RestApplication.java
+/home/vahicyr/workspace/MicroservicesDemo/products/src/main/java/demo/dboerse/microservices/products/model/Products.java
+/home/vahicyr/workspace/MicroservicesDemo/products/src/main/java/demo/dboerse/microservices/products/rest/ProductsEndpoint.java
+/home/vahicyr/workspace/MicroservicesDemo/products/src/main/java/demo/dboerse/microservices/products/view/ProductsBean.java
+/home/vahicyr/workspace/MicroservicesDemo/products/src/main/java/demo/dboerse/microservices/products/view/ViewUtils.java
